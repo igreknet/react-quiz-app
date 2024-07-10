@@ -14,6 +14,7 @@ import { useQuiz } from './contexts/QuizContext';
 
 export default function App() {
   const { status } = useQuiz();
+
   return (
     <div className="app">
       <Header />

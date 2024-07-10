@@ -71,8 +71,8 @@ function QuizProvider({ children }) {
   const maxPossiblePoints = questions.reduce((acc, val) => acc + val.points, 0);
 
   useEffect(() => {
-    fetch('http://localhost:9000/questions')
-      // fetch('/data/questions.json')
+    // fetch('http://localhost:9000/questions')
+    fetch('/data/questions.json')
       .then(res => res.json())
       .then(data => dispatch({ type: 'dataReceived', payload: data }))
       .catch(err => dispatch({ type: 'dataFailed' }));

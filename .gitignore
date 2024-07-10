@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/src-no-context
 /.pnp
 .pnp.js
 
