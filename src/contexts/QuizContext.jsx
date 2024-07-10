@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
+import data from '../data/questions.json';
 
 const QuizContext = createContext();
 
@@ -71,13 +72,27 @@ function QuizProvider({ children }) {
   const maxPossiblePoints = questions.reduce((acc, val) => acc + val.points, 0);
 
   useEffect(() => {
-    // fetch('http://localhost:9000/questions')
-    fetch('/data/questions.json')
-      .then(res => res.json())
-      .then(data => dispatch({ type: 'dataReceived', payload: data }))
-      .catch(err => dispatch({ type: 'dataFailed' }));
-    return () => {};
+    dispatch({ type: 'dataReceived', payload: data.questions });
   }, []);
+
+  //fetch from api server
+  // useEffect(() => {
+  //   fetch('http://localhost:9000/questions')
+  //     .then(res => res.json())
+  //     .then(data => dispatch({ type: 'dataReceived', payload: data.questions }))
+  //     .catch(err => dispatch({ type: 'dataFailed' }));
+  //   return () => {};
+  // }, []);
+
+  //fetcj froom local file
+  // useEffect(() => {
+  //   // fetch('http://localhost:9000/questions')
+  //   fetch('/data/questions.json')//data is in public folder
+  //     .then(res => res.json())
+  //     .then(data => dispatch({ type: 'dataReceived', payload: data }))
+  //     .catch(err => dispatch({ type: 'dataFailed' }));
+  //   return () => {};
+  // }, []);
 
   return (
     <QuizContext.Provider
